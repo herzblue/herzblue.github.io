@@ -11,9 +11,9 @@
     main { width: min(420px, calc(100% - 48px)); box-sizing: border-box; text-align: center; }
     h1 { font-size: 24px; margin: 0 0 12px; }
     p { line-height: 1.55; color: #57606a; margin: 0 0 26px; }
-    button, a { display: block; box-sizing: border-box; width: 100%; border-radius: 10px; padding: 15px 18px; font-size: 17px; font-weight: 700; text-decoration: none; }
-    button { border: 0; background: #24292f; color: white; cursor: pointer; }
-    a { margin-top: 12px; color: #0969da; border: 1px solid #d0d7de; background: white; }
+    a { display: block; box-sizing: border-box; width: 100%; border-radius: 10px; padding: 15px 18px; font-size: 17px; font-weight: 700; text-decoration: none; }
+    .primary { background: #24292f; color: white; }
+    .secondary { margin-top: 12px; color: #0969da; border: 1px solid #d0d7de; background: white; }
     .error { display: none; color: #cf222e; }
   </style>
 </head>
@@ -21,8 +21,8 @@
   <main>
     <h1>GitHub 앱에서 열기</h1>
     <p id="description">버튼을 누르면 GitHub 앱에서 비공개 문서를 엽니다.</p>
-    <button id="open" type="button">GitHub 앱에서 열기</button>
-    <a id="web" href="#">브라우저에서 열기</a>
+    <a id="open" class="primary" href="#">GitHub 앱에서 열기</a>
+    <a id="web" class="secondary" href="#">브라우저에서 열기</a>
     <p id="error" class="error">열 파일 주소가 올바르지 않습니다.</p>
   </main>
   <script>
@@ -39,10 +39,7 @@
       document.getElementById('error').style.display = 'block';
     } else {
       webLink.href = target;
-      openButton.addEventListener('click', () => {
-        // GitHub for iOS handles this custom URL after the user taps the button.
-        location.href = 'github://openRepo/' + target;
-      });
+      openButton.href = target;
     }
   </script>
 </body>
